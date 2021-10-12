@@ -86,7 +86,7 @@ func (c *Canvas) Save(out string) error {
 	return c.dc.SavePNG(out)
 }
 
-func (c *Canvas) Image(out string) image.Image {
+func (c *Canvas) Image() image.Image {
 	return c.dc.Image()
 }
 
