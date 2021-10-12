@@ -1,6 +1,7 @@
 package visual
 
 import (
+	"image"
 	"math"
 
 	"github.com/fogleman/gg"
@@ -83,6 +84,10 @@ func (c *Canvas) Waves(r, g, b int, padding float64) *Canvas {
 
 func (c *Canvas) Save(out string) error {
 	return c.dc.SavePNG(out)
+}
+
+func (c *Canvas) Image(out string) image.Image {
+	return c.dc.Image()
 }
 
 func minMax(vals []int16) (float64, float64) {
