@@ -9,7 +9,7 @@ import (
 func TestWaves(t *testing.T) {
 	wavPath := "./example/sample.wav"
 	brandPath := "./example/kiosk-branding.png"
-	nSamples := 250
+	nSamples := 200
 
 	samples, err := visual.ReadPath(wavPath, nSamples)
 	if err != nil {

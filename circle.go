@@ -11,7 +11,7 @@ func (c *Canvas) CircleWaves(r, g, b int, padding float64) *Canvas {
 	l := float64(len(c.samples))
 
 	min, max := minMax(c.samples)
-	theta := ((math.Pi * 2) / l)
+	theta := (math.Pi * 2) / l
 
 	c.dc.SetRGB255(r, g, b)
 	for i, sample := range c.samples {
