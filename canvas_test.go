@@ -36,7 +36,7 @@ func TestWaves(t *testing.T) {
 func TestCircleWaves(t *testing.T) {
 	wavPath := "./example/sample.wav"
 	brandPath := "./example/kiosk-branding.png"
-	nSamples := 360
+	nSamples := 200
 
 	samples, err := visual.ReadPath(wavPath, nSamples)
 	if err != nil {
@@ -47,7 +47,7 @@ func TestCircleWaves(t *testing.T) {
 		t.Fatalf("expected samples length to be %d, got: %d", nSamples, len(samples))
 	}
 
-	canvas := visual.Blank(samples, 10, 5, 1000, true)
+	canvas := visual.Blank(samples, 50, 5, 1000, true)
 
 	if _, err := canvas.BrandingPath(brandPath, 0.9, false); err != nil {
 		t.Fatalf("expected error to be nil, got: %s", err.Error())
