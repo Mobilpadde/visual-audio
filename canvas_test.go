@@ -11,7 +11,7 @@ func TestWave(t *testing.T) {
 	brandPath := "./example/kiosk-branding.png"
 	nSamples := 250
 
-	samples, err := visual.Read(wavPath, nSamples)
+	samples, err := visual.ReadPath(wavPath, nSamples)
 	if err != nil {
 		t.Fatalf("expected error to be nil, got: %s", err.Error())
 	}
@@ -22,7 +22,7 @@ func TestWave(t *testing.T) {
 
 	canvas := visual.Blank(samples, 2, 5, 500)
 
-	if _, err := canvas.Branding(brandPath, 0.9, false); err != nil {
+	if _, err := canvas.BrandingPath(brandPath, 0.9, false); err != nil {
 		t.Fatalf("expected error to be nil, got: %s", err.Error())
 	}
 
@@ -30,5 +30,17 @@ func TestWave(t *testing.T) {
 
 	if err := canvas.Save("test.png"); err != nil {
 		t.Fatalf("expected error to be nil, got: %s", err.Error())
+	}
+}
+
+func BenchmarkWave(b *testing.B) {
+	wavPath := "./example/sample.wav"
+	nSamples := 250
+
+	samples, _ := visual.ReadPath(wavPath, nSamples)
+	canvas := visual.Blank(samples, 2, 5, 500)
+
+	for i := 0; i < b.N; i++ {
+		canvas.Waves(228, 71, 54, 20)
 	}
 }
