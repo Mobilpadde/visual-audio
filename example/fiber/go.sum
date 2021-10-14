@@ -1,5 +1,7 @@
 github.com/Mobilpadde/visual-audio v1.2.0 h1:stT4cAQaY/Wt4mQTpr8fkeTWngR++ggOR8v9t0lrkQ0=
 github.com/Mobilpadde/visual-audio v1.2.0/go.mod h1:IgU4CbjN586zRWdltSkRUSxBpgbV/zcFF90YLFBR0bE=
+github.com/Mobilpadde/visual-audio v1.2.6 h1:7C+I240nSxGHYCuIu1pyRyCYjhwG5dXonNOJXkxMQ+s=
+github.com/Mobilpadde/visual-audio v1.2.6/go.mod h1:IgU4CbjN586zRWdltSkRUSxBpgbV/zcFF90YLFBR0bE=
 github.com/andybalholm/brotli v1.0.2 h1:JKnhI/XQ75uFBTiuzXpzFrUriDPiZjlOSzh6wXogP0E=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/fogleman/gg v1.3.0 h1:/7zJX8F6AaYQc57WQCyN9cAIz+4bCJGO9B+dyW29am8=

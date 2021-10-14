@@ -17,6 +17,7 @@ func main() {
 	})
 
 	app.Post("/", clean)
+	app.Post("/circle", circle)
 	app.Post("/branding", branding(false))
 	app.Post("/repeat", branding(true))
 
@@ -41,8 +42,42 @@ func clean(c *fiber.Ctx) error {
 		return err
 	}
 
-	canvas := visual.Blank(samples, 2, 5, 500)
+	canvas := visual.Blank(samples, 2, 5, 500, false)
 	canvas.Waves(228, 71, 54, 20)
+
+	buf := new(bytes.Buffer)
+	im := canvas.Image()
+	if err := png.Encode(buf, im); err != nil {
+		return err
+	}
+	r := bytes.NewReader(buf.Bytes())
+
+	c.Response().Header.Set("Content-Type", "image/png")
+	c.Status(fiber.StatusCreated)
+	io.Copy(c.Response().BodyWriter(), r)
+	return nil
+}
+
+func circle(c *fiber.Ctx) error {
+	form, err := c.MultipartForm()
+	if err != nil {
+		return err
+	}
+
+	file := form.File["sample"][0]
+	audio, err := file.Open()
+	if err != nil {
+		return err
+	}
+
+	nSamples := 250
+	samples, err := visual.Read(audio, nSamples)
+	if err != nil {
+		return err
+	}
+
+	canvas := visual.Blank(samples, 50, 5, 1000, true)
+	canvas.CircleWaves(228, 71, 54, 20)
 
 	buf := new(bytes.Buffer)
 	im := canvas.Image()
@@ -82,7 +117,7 @@ func branding(repeat bool) func(c *fiber.Ctx) error {
 			return err
 		}
 
-		canvas := visual.Blank(samples, 2, 5, 500)
+		canvas := visual.Blank(samples, 2, 5, 500, false)
 		if _, err := canvas.BrandingPath(brandingImage, 0.9, repeat); err != nil {
 			return err
 		}

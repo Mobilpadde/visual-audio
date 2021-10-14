@@ -3,7 +3,7 @@ module github.com/Mobilpadde/visual-audio/examples/fiber
 go 1.17
 
 require (
-	github.com/Mobilpadde/visual-audio v1.2.0
+	github.com/Mobilpadde/visual-audio v1.2.6
 	github.com/gofiber/fiber/v2 v2.20.1
 )
 
