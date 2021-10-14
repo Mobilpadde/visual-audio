@@ -30,13 +30,13 @@ func clean(c *fiber.Ctx) error {
 	}
 
 	file := form.File["sample"][0]
-	path := fmt.Sprintf("/tmp/%s", file.Filename)
-	if err := c.SaveFile(file, path); err != nil {
+	audio, err := file.Open()
+	if err != nil {
 		return err
 	}
 
 	nSamples := 250
-	samples, err := visual.Read(path, nSamples)
+	samples, err := visual.Read(audio, nSamples)
 	if err != nil {
 		return err
 	}
@@ -65,25 +65,25 @@ func branding(repeat bool) func(c *fiber.Ctx) error {
 		}
 
 		file := form.File["sample"][0]
-		samplePath := fmt.Sprintf("/tmp/%s", file.Filename)
-		if err := c.SaveFile(file, samplePath); err != nil {
+		audio, err := file.Open()
+		if err != nil {
 			return err
 		}
 
 		file = form.File["branding"][0]
-		brandingPath := fmt.Sprintf("/tmp/%s", file.Filename)
-		if err := c.SaveFile(file, brandingPath); err != nil {
+		brandingImage := fmt.Sprintf("/tmp/%s", file.Filename)
+		if err := c.SaveFile(file, brandingImage); err != nil {
 			return err
 		}
 
 		nSamples := 250
-		samples, err := visual.Read(samplePath, nSamples)
+		samples, err := visual.Read(audio, nSamples)
 		if err != nil {
 			return err
 		}
 
 		canvas := visual.Blank(samples, 2, 5, 500)
-		if _, err := canvas.Branding(brandingPath, 0.9, repeat); err != nil {
+		if _, err := canvas.BrandingPath(brandingImage, 0.9, repeat); err != nil {
 			return err
 		}
 
