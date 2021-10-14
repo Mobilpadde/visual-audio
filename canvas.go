@@ -16,12 +16,15 @@ type Canvas struct {
 }
 
 // Blank will return a new *Canvas
-func Blank(samples []int16, spacing, sampleWidth, height int) *Canvas {
+func Blank(samples []int16, spacing, sampleWidth, height int, square bool) *Canvas {
 	l := len(samples)
 	w := float64(sampleWidth * l * spacing)
 	h := float64(height)
 
 	dc := gg.NewContext(int(w), height)
+	if square {
+		dc = gg.NewContext(height, height)
+	}
 
 	dc.DrawRectangle(0, 0, w, h)
 	dc.SetRGB(1, 1, 1)
