@@ -9,7 +9,7 @@
     - Form
       - `sample` - Any wav below 10MB
       - `branding` - Any png below 10MB
-- repeat
+- repeated branding
   - http://localhost:3000/repeat
     - Form
       - `sample` - Any wav below 10MB
